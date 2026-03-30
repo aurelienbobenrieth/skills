@@ -1,0 +1,19 @@
+# Skills
+
+My personal collection of reusable skills for AI coding agents.
+
+Feel free to reuse them as is or draw inspiration from them and customize them as you please.
+
+## Communication
+
+- **[agent-communication](agent-communication/SKILL.md)** - How an agent communicates: shape, honesty, framing. Applied to every conversation. Empirical, opinionated guidelines.
+  ```sh
+  npx skills@latest add aurelienbobenrieth/skills/agent-communication
+  ```
+
+## Tooling
+
+- **[git](git/SKILL.md)** - Conventional commits, intelligent staging, pull requests, gh CLI. Based on [awesome-copilot/git-commit](https://skills.sh/github/awesome-copilot/git-commit), customized to my needs.
+  ```sh
+  npx skills@latest add aurelienbobenrieth/skills/git
+  ```

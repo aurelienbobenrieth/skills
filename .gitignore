@@ -1,0 +1,7 @@
+.agents/
+.claude/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
