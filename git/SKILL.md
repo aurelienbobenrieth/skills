@@ -33,8 +33,9 @@ Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`
 
 ### Authoring
 
-- Read author name and email from `git config user.name` and `git config user.email`. Use those values exclusively.
-- Add `Co-Authored-By` trailer for the current LLM when it contributed to the change.
+- Read author name and email from `git config user.name` and `git config user.email` before every commit. Use those values exclusively - never substitute another identity.
+- Commits are the user's work. Omit `Co-Authored-By` trailers for LLMs.
+- Honor the user's signing config (`commit.gpgsign`, `user.signingkey`). Never pass `--no-gpg-sign` or `-c commit.gpgsign=false`.
 
 ### Safety
 
