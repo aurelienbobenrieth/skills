@@ -42,7 +42,10 @@ Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`
 - Read `git diff --staged` (or `git diff` when nothing is staged) and `git status --porcelain` before committing.
 - Stage files explicitly by path. Avoid `git add -A` or `git add .` to prevent leaking secrets or binaries.
 - Leave hooks enabled. When a hook fails, fix the issue and create a new commit - never amend the failed one.
-- Reserve destructive commands (`--force`, `reset --hard`, `clean -f`, `branch -D`) for explicit user requests.
+- Treat protected or shared branches according to repo policy. Before any action that rewrites, deletes, overwrites, force-pushes, unstages, resets, rebases, cherry-picks, or otherwise alters existing work on those branches, ask for explicit human approval.
+- Ask before any ambiguous or destructive action that could lose work in the current diff or worktree, including `push --force`, `reset`, `reset --hard`, `clean`, `checkout -- <path>`, `restore`, `branch -D`, branch deletion, history rewrite, conflicted rebase/cherry-pick resolution, or removing files already present in the diff.
+- If the user asks for an operation that could destroy or overwrite work, first state the exact files, branch, and command class affected, then wait for confirmation.
+- Prefer non-destructive inspection and narrowly scoped staging commands. When in doubt, stop and ask.
 
 ## Pull Requests
 
@@ -54,18 +57,28 @@ Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`
 ### Body
 
 ```
-## Summary
-<1-3 bullet points explaining why this change exists>
-
-## Changes
-<Bullet list of what changed, grouped logically>
-
-## Test plan
-<How to verify correctness>
+## What changed
+- <what changed, and why only when the diff or title does not make it obvious>
 ```
 
-- Write the summary from all commits on the branch, not just the latest one.
-- Link related issues: `Closes #N`, `Refs #N`.
+- Keep the body concise. A small PR may need only one `What changed` bullet.
+- Write for another developer deciding how to review without opening every changed file.
+- Include only information the diff does not communicate well: intent, context, decision making, tradeoffs, known limits, or non-obvious validation.
+- Do not turn the body into an exhaustive changelog or repeat the file diff.
+- Add optional sections only when they add decision-useful context:
+
+```
+## Evidence
+- <behavior proof, live smoke result, migration proof, or non-obvious check that changes reviewer confidence>
+
+## Notes
+- <risk, compromise, follow-up, rollout note, or related issue>
+```
+
+- Do not list routine formatting, lint, typecheck, or test commands unless the command result is decision-useful evidence for this PR.
+- Prefer evidence that proves behavior or risk: records created, side effects observed, smoke output, migration dry-run result, recovery path proof, or a specific failing/passing regression test.
+- Omit optional sections when they would only say that normal checks were run.
+- Link related issues in `Notes` when useful: `Closes #N`, `Refs #N`.
 
 ## gh CLI
 
