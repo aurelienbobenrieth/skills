@@ -6,4 +6,4 @@
 
 Harness is the single source of truth for my agent skills, alongside the lint rules, tool configs and conformance checks they steer.
 
-The content below is kept read-only for history.
+The skill folders here are kept read-only for history.
